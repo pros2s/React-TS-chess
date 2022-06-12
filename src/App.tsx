@@ -1,10 +1,9 @@
-import React from 'react';
 import Sprite from './components/SVG/Sprite';
 
 
 const App = () => {
   return (
-    <Sprite id='blackRook'/>
+    <Sprite id='whiteKing'/>
   );
 };
 

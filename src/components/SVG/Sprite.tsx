@@ -1,12 +1,17 @@
-import React, { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 
 interface SpriteProps {
   id: string;
-}
+};
+
+interface ISpritesArray {
+  id: string;
+  svgView: ReactNode;
+};
 
 const Sprite: FC<SpriteProps> = ({ id }) => {
-  const sprites = [
+  const sprites: ISpritesArray[] = [
     {
       //black pieces
       id: 'blackBishop',

@@ -17,6 +17,7 @@ const App = () => {
   const restartGame = () => {
     const newBoard = new Board();
     newBoard.initCells();
+    newBoard.addFigures();
     setBoard(newBoard);
   };
 

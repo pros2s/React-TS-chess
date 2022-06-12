@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 
 
 interface SpriteProps {
-  id: string;
+  id: string | null | undefined;
 };
 
 interface ISpritesArray {
@@ -128,7 +128,7 @@ const Sprite: FC<SpriteProps> = ({ id }) => {
   const svgPiece = sprites.find((sprite) => sprite.id === id);
 
   return (
-    <div>
+    <div className='figure'>
       { svgPiece?.svgView }
     </div>
   );

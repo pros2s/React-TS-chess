@@ -1,4 +1,4 @@
-import { FC, Fragment, useState } from 'react';
+import { FC, Fragment, useEffect, useState } from 'react';
 
 import CellComponent from '../components/CellComponent';
 
@@ -9,16 +9,36 @@ import '../styles/board.scss';
 
 interface BoardProps {
   board: Board;
-  setBoard?: (board: Board) => void;
+  setBoard: (board: Board) => void;
 };
 
 const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
   const [ selectedCell, setSelectedCell ] = useState<Cell | null>(null);
 
+  useEffect(() => {
+    highlightCells();
+  }, [ selectedCell ]); // eslint-disable-line
+
 
   const onClick = (cell: Cell): void => {
-    if (cell.figure)
-      setSelectedCell(cell);
+    if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
+      selectedCell.moveFigure(cell);
+      setSelectedCell(null);
+    }
+    else {
+      if (cell.figure)
+        setSelectedCell(cell);
+    };
+  };
+
+  const updateBoard = () => {
+    const newBoard = board.getCopy();
+    setBoard(newBoard);
+  };
+
+  const highlightCells = () => {
+    board.highlightCells(selectedCell);
+    updateBoard();
   };
 
   return (

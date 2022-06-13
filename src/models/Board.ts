@@ -1,8 +1,8 @@
-import { Cell } from "./Cell";
 import { Colors } from "./Colours";
+import { Cell } from "./Cell";
+
 import { Bishop } from "./figures/Bishop";
 import { King } from "./figures/King";
-
 import { Knight } from "./figures/Knight";
 import { Pawn } from "./figures/Pawn";
 import { Queen } from "./figures/Queen";
@@ -32,6 +32,23 @@ export class Board {
 
   getCell(x: number, y: number): Cell {
     return this.cells[y][x];
+  };
+
+  getCopy(): Board {
+    const newBoard = new Board();
+    newBoard.cells = this.cells;
+    return newBoard;
+  };
+
+  highlightCells(selectedCell: Cell | null) {
+    for (let i = 0; i < this.cells.length; i++) {
+      const row = this.cells[i];
+
+      for (let j = 0; j < row.length; j++) {
+        const target = row[j];
+        target.available = !!selectedCell?.figure?.canMove(target);
+      };
+    };
   };
 
 

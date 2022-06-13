@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <BoardComponent board={ board }/>
+      <BoardComponent board={ board } setBoard={ setBoard }/>
     </div>
   );
 };

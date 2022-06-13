@@ -8,5 +8,5 @@ export class Rook extends Figure {
     super(color, cell);
     this.name = FigureNames.ROOK;
     this.pieceId = color === Colors.BLACK ? 'blackRook' : 'whiteRook';
-  };
+  }
 };

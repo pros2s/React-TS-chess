@@ -13,7 +13,7 @@ export class Board {
   cells: Cell[][] = [];
 
 
-  public initCells() {
+  initCells() {
     for (let i = 0; i < 8; i++) {
       const row: Cell[] = [];
 
@@ -30,7 +30,7 @@ export class Board {
     };
   };
 
-  public getCell(x: number, y: number): Cell {
+  getCell(x: number, y: number): Cell {
     return this.cells[y][x];
   };
 

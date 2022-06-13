@@ -1,8 +1,9 @@
-import { FC, Fragment } from 'react';
+import { FC, Fragment, useState } from 'react';
 
 import CellComponent from '../components/CellComponent';
 
 import { Board } from '../models/Board';
+import { Cell } from '../models/Cell';
 import '../styles/app.scss';
 
 
@@ -12,6 +13,14 @@ interface BoardProps {
 };
 
 const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
+  const [ selectedCell, setSelectedCell ] = useState<Cell | null>(null);
+
+
+  const onClick = (cell: Cell): void => {
+    if (cell.figure)
+      setSelectedCell(cell);
+  };
+
   return (
     <div className='board'>
       {
@@ -23,6 +32,8 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
                 <CellComponent
                   cell={ cell }
                   key={ cell.id }
+                  selected={ cell.x === selectedCell?.x && cell.y === selectedCell?.y }
+                  onClick={ onClick }
                 />
               )
 

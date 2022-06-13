@@ -1,0 +1,40 @@
+.cell {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+};
+
+.cell__black {
+  background-color: rgb(227, 192, 123);
+
+  &.selected {
+    background-color: darken(rgb(227, 192, 123), 10%);
+  }
+};
+
+.cell__white {
+  background-color: rgb(126, 141, 195);
+
+  &.selected {
+    background-color: darken(rgb(126, 141, 195), 10%);
+  }
+};
+
+.cell__available-piece {
+  background-color: rgb(176, 84, 84);
+};
+
+.cell__available-move {
+  background-color: rgb(60, 235, 168);
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+  margin: auto;
+};

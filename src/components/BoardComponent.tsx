@@ -4,7 +4,7 @@ import CellComponent from '../components/CellComponent';
 
 import { Board } from '../models/Board';
 import { Cell } from '../models/Cell';
-import '../styles/app.scss';
+import '../styles/board.scss';
 
 
 interface BoardProps {

@@ -3,6 +3,8 @@ import React, { FC } from 'react';
 import Sprite from './SVG/Sprite';
 import { Cell } from '../models/Cell';
 
+import '../styles/cell.scss';
+
 
 interface CellProps {
   cell: Cell;
@@ -13,9 +15,17 @@ interface CellProps {
 const CellComponent: FC<CellProps> = ({ cell, selected, onClick }) => {
   return (
     <div
-      className={ [ 'cell', cell.color, selected ? 'selected' : '' ].join(' ') }
+      className={
+        [
+          'cell',
+          'cell__' + cell.color,
+          selected ? 'selected' : '',
+          cell.available && cell.figure && 'cell__available-piece'
+        ].join(' ')
+      }
       onClick={ () => onClick(cell) }>
-        <Sprite id={ cell.figure?.pieceId }/>
+        { cell.available && !cell.figure && <div className="cell__available-move"></div> }
+        { cell.figure && <Sprite id={ cell.figure?.pieceId }/> }
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import { FC, ReactNode } from 'react';
 
+import '../../styles/figure.scss';
+
 
 interface SpriteProps {
   id: string | null | undefined;

@@ -7,10 +7,23 @@ import { Knight } from "./figures/Knight";
 import { Pawn } from "./figures/Pawn";
 import { Queen } from "./figures/Queen";
 import { Rook } from "./figures/Rook";
+import { Figure } from "./figures/Figure";
 
 
 export class Board {
   cells: Cell[][] = [];
+
+  lostWhitefigures: Figure[] = [];
+  lostWhitePawns: number = 0;
+  lostWhiteKnights: number = 0;
+  lostWhiteBishops: number = 0;
+  lostWhiteQueens: number = 0;
+
+  lostBlackfigures: Figure[] = [];
+  lostBlackPawns: number = 0;
+  lostBlackKnights: number = 0;
+  lostBlackBishops: number = 0;
+  lostBlackQueens: number = 0;
 
 
   initCells() {
@@ -37,6 +50,8 @@ export class Board {
   getCopy(): Board {
     const newBoard = new Board();
     newBoard.cells = this.cells;
+    newBoard.lostBlackfigures = this.lostBlackfigures;
+    newBoard.lostWhitefigures = this.lostWhitefigures;
     return newBoard;
   };
 

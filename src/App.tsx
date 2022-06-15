@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import BoardComponent from './components/BoardComponent';
+import LostFigures from './components/LostFigures';
 
 import { Board } from './models/Board';
 import { Colors } from './models/Colours';
@@ -24,8 +25,8 @@ const App = () => {
     const newBoard = new Board();
     newBoard.initCells();
     newBoard.addFigures();
-    setBoard(newBoard);
     setCurrentPlayer(whitePlayer);
+    setBoard(newBoard);
   };
 
   const swapPlayer = () => {
@@ -34,11 +35,19 @@ const App = () => {
 
   return (
     <div className="app">
-      <BoardComponent
-        board={ board }
-        setBoard={ setBoard }
-        swapPlayer={ swapPlayer }
-        currentPlayer={ currentPlayer }/>
+      <div className="playground">
+        <LostFigures
+          figures={ board.lostWhitefigures }/>
+
+        <BoardComponent
+          board={ board }
+          setBoard={ setBoard }
+          swapPlayer={ swapPlayer }
+          currentPlayer={ currentPlayer }/>
+
+        <LostFigures
+          figures={ board.lostBlackfigures }/>
+      </div>
     </div>
   );
 };

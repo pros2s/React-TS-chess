@@ -25,7 +25,7 @@ const CellComponent: FC<CellProps> = ({ cell, selected, onClick }) => {
       }
       onClick={ () => onClick(cell) }>
         { cell.available && !cell.figure && <div className="cell__available-move"></div> }
-        { cell.figure && <Sprite id={ cell.figure?.pieceId }/> }
+        { cell.figure && <Sprite id={ cell.figure?.pieceId } lost={ false }/> }
     </div>
   );
 };

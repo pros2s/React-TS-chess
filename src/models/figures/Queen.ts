@@ -8,6 +8,8 @@ export class Queen extends Figure {
     super(color, cell);
     this.name = FigureNames.QUEEN;
     this.pieceId = color === Colors.BLACK ? 'blackQueen' : 'whiteQueen';
+    this.value = 8;
+
   };
 
 

@@ -8,6 +8,7 @@ export class Knight extends Figure {
     super(color, cell);
     this.name = FigureNames.KNIGHT;
     this.pieceId = color === Colors.BLACK ? 'blackKnight' : 'whiteKnight';
+    this.value = 3;
   };
 
 

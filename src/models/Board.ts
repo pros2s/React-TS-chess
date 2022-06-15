@@ -14,16 +14,16 @@ export class Board {
   cells: Cell[][] = [];
 
   lostWhitefigures: Figure[] = [];
-  lostWhitePawns: number = 0;
-  lostWhiteKnights: number = 0;
-  lostWhiteBishops: number = 0;
-  lostWhiteQueens: number = 0;
+  // lostWhitePawns: number = 0;
+  // lostWhiteKnights: number = 0;
+  // lostWhiteBishops: number = 0;
+  // lostWhiteQueens: number = 0;
 
   lostBlackfigures: Figure[] = [];
-  lostBlackPawns: number = 0;
-  lostBlackKnights: number = 0;
-  lostBlackBishops: number = 0;
-  lostBlackQueens: number = 0;
+  // lostBlackPawns: number = 0;
+  // lostBlackKnights: number = 0;
+  // lostBlackBishops: number = 0;
+  // lostBlackQueens: number = 0;
 
 
   initCells() {
@@ -50,8 +50,8 @@ export class Board {
   getCopy(): Board {
     const newBoard = new Board();
     newBoard.cells = this.cells;
-    newBoard.lostBlackfigures = this.lostBlackfigures;
-    newBoard.lostWhitefigures = this.lostWhitefigures;
+    newBoard.lostBlackfigures = this.lostBlackfigures.sort((a, b) => (a.value < b.value ? 1 : -1));
+    newBoard.lostWhitefigures = this.lostWhitefigures.sort((a, b) => (a.value < b.value ? 1 : -1));
     return newBoard;
   };
 

@@ -8,6 +8,7 @@ export class Bishop extends Figure {
     super(color, cell);
     this.name = FigureNames.BISHOP;
     this.pieceId = color === Colors.BLACK ? 'blackBishop' : 'whiteBishop';
+    this.value = 3.5;
   };
 
 

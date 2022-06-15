@@ -10,6 +10,7 @@ export class Pawn extends Figure {
     super(color, cell);
     this.name = FigureNames.PAWN;
     this.pieceId = color === Colors.BLACK ? 'blackPawn' : 'whitePawn';
+    this.value = 1;
   };
 
 

@@ -9,5 +9,12 @@
   padding: 5px;
 
   background-color: #989797;
-  border-radius: 5px;
+
+  &--up {
+    border-radius: 5px 5px 0 0;
+  };
+
+  &--down {
+    border-radius: 0 0 5px 5px;
+  };
 };

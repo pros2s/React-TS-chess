@@ -19,6 +19,10 @@ export class Figure {
   id: number;
   cell: Cell;
   value: number;
+  isFirstStep: boolean;
+  isCastleShort: boolean;
+  isCastleLong: boolean;
+
 
 
   constructor(color: Colors, cell: Cell) {
@@ -29,6 +33,9 @@ export class Figure {
     this.name = FigureNames.FIGURE;
     this.id = Math.random();
     this.value = 0;
+    this.isFirstStep = true;
+    this.isCastleShort = false;
+    this.isCastleLong = false;
   };
 
   canMove(target: Cell): boolean {

@@ -14,16 +14,8 @@ export class Board {
   cells: Cell[][] = [];
 
   lostWhitefigures: Figure[] = [];
-  // lostWhitePawns: number = 0;
-  // lostWhiteKnights: number = 0;
-  // lostWhiteBishops: number = 0;
-  // lostWhiteQueens: number = 0;
 
   lostBlackfigures: Figure[] = [];
-  // lostBlackPawns: number = 0;
-  // lostBlackKnights: number = 0;
-  // lostBlackBishops: number = 0;
-  // lostBlackQueens: number = 0;
 
 
   initCells() {

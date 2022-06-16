@@ -4,6 +4,7 @@ import CellComponent from '../components/CellComponent';
 
 import { Board } from '../models/Board';
 import { Cell } from '../models/Cell';
+import { FigureNames } from '../models/figures/Figure';
 import { Player } from '../models/Player';
 import '../styles/board.scss';
 
@@ -24,8 +25,44 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPl
 
 
   const onClick = (cell: Cell): void => {
-    if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
+    //Long side castle
+    if (
+      selectedCell?.figure?.name === FigureNames.KING &&
+      selectedCell.figure.isFirstStep &&
+      board.getCell(cell.x, cell.y).isEmpty() &&
+      board.getCell(cell.x - 1, cell.y).isEmpty() &&
+      board.getCell(cell.x + 1, cell.y).isEmpty() &&
+      board.getCell(cell.x - 2, cell.y).figure?.name === FigureNames.ROOK &&
+      board.getCell(cell.x - 2, cell.y).figure?.isFirstStep
+    ) {
       selectedCell.moveFigure(cell);
+      board.getCell(cell.x - 2, cell.y).moveFigure(board.getCell(cell.x + 1, cell.y));
+
+      setSelectedCell(null);
+      swapPlayer();
+    }
+    //Short side castle
+    else if (
+      selectedCell?.figure?.name === FigureNames.KING &&
+      selectedCell.figure.isFirstStep &&
+      board.getCell(cell.x, cell.y).isEmpty() &&
+      board.getCell(cell.x - 1, cell.y).isEmpty() &&
+      board.getCell(cell.x + 1, cell.y).figure?.name === FigureNames.ROOK &&
+      board.getCell(cell.x + 1, cell.y).figure?.isFirstStep
+    ) {
+      selectedCell.moveFigure(cell);
+      board.getCell(cell.x + 1, cell.y).moveFigure(board.getCell(cell.x - 1, cell.y));
+
+      setSelectedCell(null);
+      swapPlayer();
+    }
+    else if (selectedCell?.figure?.canMove(cell) && selectedCell !== cell) {
+      if (!selectedCell.figure.isFirstStep) {
+        selectedCell.figure.isCastleLong = false;
+        selectedCell.figure.isCastleShort = false;
+      };
+      selectedCell.moveFigure(cell);
+
       setSelectedCell(null);
       swapPlayer();
     }

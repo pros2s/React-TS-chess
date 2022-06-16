@@ -4,8 +4,6 @@ import { Cell } from "../Cell";
 
 
 export class Pawn extends Figure {
-  isFirstStep = true;
-
   constructor(color: Colors, cell: Cell) {
     super(color, cell);
     this.name = FigureNames.PAWN;

@@ -22,7 +22,17 @@ export class Rook extends Figure {
       )
       return true;
 
+    if (
+        this.cell.board.getCell(this.cell.x - 1, this.cell.y)?.figure?.isCastleShort ||
+        this.cell.board.getCell(this.cell.x + 2, this.cell.y)?.figure?.isCastleLong
+      )
+      return true;
 
     return false;
+  };
+
+  movementFigure(target: Cell): void {
+    super.movementFigure(target);
+    this.isFirstStep = false;
   };
 };

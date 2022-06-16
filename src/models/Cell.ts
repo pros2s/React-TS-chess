@@ -88,25 +88,6 @@ export class Cell {
     this.figure.cell = this;
   };
 
-  // addLostFigure(figure: Figure) {
-  //   const blackFigureIncludes = this.board.lostBlackfigures.find((fig) => fig.name === figure.name) ? true : false;
-  //   const whiteFigureIncludes = this.board.lostWhitefigures.find((fig) => fig.name === figure.name) ? true : false;
-
-  //   if (blackFigureIncludes) {
-  //     for (let i = 0; i < this.board.lostBlackfigures.length; i++) {
-
-  //     };
-  //   };
-
-  //   if (figure.color === Colors.BLACK && !blackFigureIncludes) {
-  //     this.board.lostBlackfigures.push(figure);
-  //   };
-
-  //   if (figure.color === Colors.WHITE && !whiteFigureIncludes) {
-  //     this.board.lostWhitefigures.push(figure);
-  //   };
-  // };
-
   moveFigure(target: Cell) {
     if (this.figure && this.figure.canMove(target)) {
       this.figure.movementFigure(target);

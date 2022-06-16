@@ -15,6 +15,36 @@ export class King extends Figure {
     if (!super.canMove(target))
       return false;
 
+    //Castle
+    if (
+        //Short side castle
+        this.cell.board.getCell(this.cell.x + 3, this.cell.y)?.figure?.name === FigureNames.ROOK &&
+        this.cell.board.getCell(this.cell.x + 3, this.cell.y).figure?.isFirstStep &&
+        this.cell.board.getCell(this.cell.x + 2, this.cell.y).isEmpty() &&
+        this.cell.board.getCell(this.cell.x + 1, this.cell.y).isEmpty() &&
+        target.x === this.cell.x + 2 &&
+        this.isFirstStep &&
+        target.y === this.cell.y
+      ) {
+        this.isCastleShort = true;
+        return true;
+      };
+
+    if (
+        //Long side castle
+        this.isFirstStep &&
+        target.y === this.cell.y &&
+        this.cell.board.getCell(this.cell.x - 4, this.cell.y)?.figure?.name === FigureNames.ROOK &&
+        this.cell.board.getCell(this.cell.x - 4, this.cell.y).figure?.isFirstStep &&
+        this.cell.board.getCell(this.cell.x - 1, this.cell.y).isEmpty() &&
+        this.cell.board.getCell(this.cell.x - 2, this.cell.y).isEmpty() &&
+        this.cell.board.getCell(this.cell.x - 3, this.cell.y).isEmpty() &&
+        target.x === this.cell.x - 2
+      ) {
+        this.isCastleLong = true;
+        return true;
+      };
+
     if (
         //vertical
         (
@@ -55,5 +85,10 @@ export class King extends Figure {
       return true;
 
     return false;
+  };
+
+  movementFigure(target: Cell): void {
+    super.movementFigure(target);
+    this.isFirstStep = false;
   };
 };

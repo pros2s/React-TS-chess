@@ -8,11 +8,12 @@ import '../styles/lost.scss';
 
 interface ILostFigures {
   figures: Figure[];
+  position: string;
 };
 
-const LostFigures: FC<ILostFigures> = ({ figures }) => {
+const LostFigures: FC<ILostFigures> = ({ figures, position }) => {
   return (
-    <div className='lost'>
+    <div className={[ 'lost', position === 'up' ? 'lost--up' : 'lost--down' ].join(' ') }>
       {
         figures.map((figure) => {
           return (

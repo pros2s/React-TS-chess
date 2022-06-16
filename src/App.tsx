@@ -37,6 +37,7 @@ const App = () => {
     <div className="app">
       <div className="playground">
         <LostFigures
+          position='up'
           figures={ board.lostWhitefigures }/>
 
         <BoardComponent
@@ -46,6 +47,7 @@ const App = () => {
           currentPlayer={ currentPlayer }/>
 
         <LostFigures
+          position='down'
           figures={ board.lostBlackfigures }/>
       </div>
     </div>

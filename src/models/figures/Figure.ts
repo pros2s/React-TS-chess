@@ -22,6 +22,7 @@ export class Figure {
   isFirstStep: boolean;
   isCastleShort: boolean;
   isCastleLong: boolean;
+  isCheck: boolean;
 
 
 
@@ -36,13 +37,11 @@ export class Figure {
     this.isFirstStep = true;
     this.isCastleShort = false;
     this.isCastleLong = false;
+    this.isCheck = false;
   };
 
   canMove(target: Cell): boolean {
     if (this.color === target.figure?.color)
-      return false;
-
-    if (target.figure?.name === FigureNames.KING)
       return false;
 
     return true;

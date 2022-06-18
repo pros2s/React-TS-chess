@@ -21,4 +21,9 @@ export class Knight extends Figure {
 
     return (dX === 2 && dY === 1) || (dX === 1 && dY === 2);
   };
+
+  movementFigure(target: Cell): void {
+    super.movementFigure(target);
+    this.isFirstStep = false;
+  };
 };

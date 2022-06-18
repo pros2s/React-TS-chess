@@ -21,4 +21,9 @@ export class Bishop extends Figure {
 
     return false;
   };
+
+  movementFigure(target: Cell): void {
+    super.movementFigure(target);
+    this.isFirstStep = false;
+  };
 };

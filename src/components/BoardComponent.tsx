@@ -18,11 +18,15 @@ interface BoardProps {
 
 const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPlayer }) => {
   const [ selectedCell, setSelectedCell ] = useState<Cell | null>(null);
+  const [ isCheck, setIsCheck ] = useState<boolean>(false);
 
   useEffect(() => {
     highlightCells();
   }, [ selectedCell ]); // eslint-disable-line
 
+  useEffect(() => {
+    kingCheck();
+  }, [ swapPlayer ]); // eslint-disable-line
 
   const onClick = (cell: Cell): void => {
     //Long side castle
@@ -82,6 +86,10 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPl
     updateBoard();
   };
 
+  const kingCheck = () => {
+    board.isCheck() ? setIsCheck(true) : setIsCheck(false);
+  };
+
   return (
     <div className='board'>
       {
@@ -91,9 +99,11 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPl
 
               row.map((cell) =>
                 <CellComponent
-                  cell={ cell }
                   key={ cell.id }
+                  cell={ cell }
                   selected={ cell.x === selectedCell?.x && cell.y === selectedCell?.y }
+                  isCheck={ isCheck }
+                  currentColor={ currentPlayer?.color }
                   onClick={ onClick }
                 />
               )

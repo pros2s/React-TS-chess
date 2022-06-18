@@ -7,16 +7,14 @@ import { Knight } from "./figures/Knight";
 import { Pawn } from "./figures/Pawn";
 import { Queen } from "./figures/Queen";
 import { Rook } from "./figures/Rook";
-import { Figure } from "./figures/Figure";
+import { Figure, FigureNames } from "./figures/Figure";
 
 
 export class Board {
   cells: Cell[][] = [];
 
   lostWhitefigures: Figure[] = [];
-
   lostBlackfigures: Figure[] = [];
-
 
   initCells() {
     for (let i = 0; i < 8; i++) {
@@ -56,6 +54,23 @@ export class Board {
         target.available = !!selectedCell?.figure?.canMove(target);
       };
     };
+  };
+
+  isCheck() {
+    for (let i = 0; i < this.cells.length; i++) {
+      const row = this.cells[i];
+
+      for (let j = 0; j < row.length; j++) {
+        const attackedCell = row[j];
+        if (
+          attackedCell.figure?.name === FigureNames.KING &&
+          attackedCell.isUnderAttack()
+        )
+        return true;
+      };
+    };
+
+    return false;
   };
 
 

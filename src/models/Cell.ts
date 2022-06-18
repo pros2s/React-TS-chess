@@ -23,7 +23,6 @@ export class Cell {
     this.id = Math.random();
   };
 
-
   isEmpty(): boolean {
     return this.figure === null;
   };
@@ -31,6 +30,20 @@ export class Cell {
   isEnemy(target: Cell): boolean {
     if (target.figure)
       return this.figure?.color !== target.figure.color;
+
+    return false;
+  };
+
+  isUnderAttack(): boolean {
+    for (let i = 0; i < this.board.cells.length; i++) {
+      const row = this.board.cells[i];
+
+      for (let j = 0; j < row.length; j++) {
+        const attackingCell = this.board.cells[i][j];
+        if (attackingCell.figure?.canMove(this))
+          return true;
+      };
+    };
 
     return false;
   };

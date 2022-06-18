@@ -4,15 +4,19 @@ import Sprite from './SVG/Sprite';
 import { Cell } from '../models/Cell';
 
 import '../styles/cell.scss';
+import { FigureNames } from '../models/figures/Figure';
+import { Colors } from '../models/Colours';
 
 
 interface CellProps {
   cell: Cell;
   selected: boolean;
+  isCheck:  boolean;
+  currentColor: Colors | undefined;
   onClick: (cell: Cell) => void;
 };
 
-const CellComponent: FC<CellProps> = ({ cell, selected, onClick }) => {
+const CellComponent: FC<CellProps> = ({ cell, isCheck, currentColor, selected, onClick }) => {
   return (
     <div
       className={
@@ -20,7 +24,12 @@ const CellComponent: FC<CellProps> = ({ cell, selected, onClick }) => {
           'cell',
           'cell__' + cell.color,
           selected ? 'selected' : '',
-          cell.available && cell.figure && 'cell__available-piece'
+          ((cell.available && cell.figure) ||
+            (cell.figure?.name === FigureNames.KING &&
+              isCheck &&
+              cell.figure.color === currentColor)) &&
+            'cell__available-piece',
+
         ].join(' ')
       }
       onClick={ () => onClick(cell) }>

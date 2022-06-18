@@ -10,7 +10,6 @@ export class King extends Figure {
     this.pieceId = color === Colors.BLACK ? 'blackKing' : 'whiteKing';
   };
 
-
   canMove(target: Cell): boolean {
     if (!super.canMove(target))
       return false;

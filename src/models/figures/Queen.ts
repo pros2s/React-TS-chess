@@ -9,7 +9,6 @@ export class Queen extends Figure {
     this.name = FigureNames.QUEEN;
     this.pieceId = color === Colors.BLACK ? 'blackQueen' : 'whiteQueen';
     this.value = 8;
-
   };
 
 
@@ -26,5 +25,10 @@ export class Queen extends Figure {
 
 
     return false;
+  };
+
+  movementFigure(target: Cell): void {
+    super.movementFigure(target);
+    this.isFirstStep = false;
   };
 };
